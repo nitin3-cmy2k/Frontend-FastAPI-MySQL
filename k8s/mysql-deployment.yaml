@@ -2,21 +2,17 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pvc
-  labels:
-    app: mysql
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi  # Allocates 5 Gigabytes of space for data persistence
+      storage: 5Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  labels:
-    app: mysql
 spec:
   replicas: 1
   selector:
@@ -38,11 +34,9 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql
-        # Mount the volume inside the container where MySQL stores its databases
         volumeMounts:
         - name: mysql-persistent-storage
           mountPath: /var/lib/mysql
-      # Attach the PVC volume to the pod
       volumes:
       - name: mysql-persistent-storage
         persistentVolumeClaim:

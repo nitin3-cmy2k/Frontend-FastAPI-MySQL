@@ -19,7 +19,7 @@ spec:
         - containerPort: 8000
         env:
         - name: DB_HOST
-          value: "mysql-service" # Internal K8s service discovery name
+          value: "mysql-service"
         - name: DB_PORT
           value: "3306"
         - name: DB_NAME
@@ -38,7 +38,7 @@ spec:
   ports:
   - port: 8000
     targetPort: 8000
-    nodePort: 30090 # Exposed to the outside world
+    nodePort: 30090
   selector:
     app: backend
 

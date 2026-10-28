@@ -2,10 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  labels:
-    app: frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: frontend
@@ -16,12 +14,9 @@ spec:
     spec:
       containers:
       - name: frontend
-        # The Jenkinsfile sed command will dynamically patch this placeholder tag
         image: docker.io/nitin3cmy2k/frontend:latest
-        imagePullPolicy: Always
         ports:
         - containerPort: 80
-          name: http
 ---
 apiVersion: v1
 kind: Service
