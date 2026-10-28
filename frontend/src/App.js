@@ -6,7 +6,7 @@ function App() {
 
   // !!! CONFIGURATION POINT !!!
   // Replace with the specific VirtualBox VM Network IP hosting your Kubernetes Cluster
-  const BACKEND_API_URL = "http://<YOUR_KUBERNETES_VM_IP>:30090/api/data";
+  const BACKEND_API_URL = "http://172.21.124.139:30090/api/data";
 
   useEffect(() => {
     fetch(BACKEND_API_URL)
