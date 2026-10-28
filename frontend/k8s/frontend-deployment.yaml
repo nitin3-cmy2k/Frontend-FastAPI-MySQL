@@ -17,7 +17,7 @@ spec:
       containers:
       - name: frontend
         # The Jenkinsfile sed command will dynamically patch this placeholder tag
-        image: your-dockerhub-username/frontend:latest
+        image: docker.io/nitin3cmy2k/frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 80

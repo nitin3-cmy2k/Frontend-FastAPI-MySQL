@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: your-dockerhub-username/backend:latest
+        image: docker.io/nitin3cmy2k/backend:latest
         ports:
         - containerPort: 8000
         env:
