@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Replace with your actual Docker Hub username
-        DOCKER_REGISTRY_USER = 'nitin3cmy2k 
+        DOCKER_REGISTRY_USER = 'nitin3cmy2k' 
         DOCKER_HUB_USER= 'nitin3cmy2k'
         DOCKER_HUB_PASSWORD = 'shivshakti@#2026'         
         FRONTEND_IMAGE       = 'frontend'
