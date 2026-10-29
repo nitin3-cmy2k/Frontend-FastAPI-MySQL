@@ -2,7 +2,7 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: local-storage
-provisioner: kubernetes.io/no-provisioner  # Local volumes must be statically provisioned
+provisioner: kubernetes.io/no-provisioner # Local volumes must be statically provisioned
 volumeBindingMode: WaitForFirstConsumer
 ---
 apiVersion: v1
@@ -11,7 +11,7 @@ metadata:
   name: mysql-pv
 spec:
   capacity:
-    storage: 1.5Gi
+    storage: 7Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
@@ -38,7 +38,7 @@ spec:
   storageClassName: local-storage
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
