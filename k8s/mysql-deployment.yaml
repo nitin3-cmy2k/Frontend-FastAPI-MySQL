@@ -11,7 +11,7 @@ metadata:
   name: mysql-pv
 spec:
   capacity:
-    storage: 2Gi
+    storage: 1.5Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
@@ -38,7 +38,7 @@ spec:
   storageClassName: local-storage
   resources:
     requests:
-      storage: 2Gi
+      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
