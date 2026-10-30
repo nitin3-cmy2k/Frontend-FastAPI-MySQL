@@ -26,7 +26,7 @@ spec:
         - key: kubernetes.io/hostname
           operator: In
           values:
-          - ubuntu # Change this to the exact name of the node where the local path exists
+          - slave # Change this to the exact name of the node where the local path exists
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
