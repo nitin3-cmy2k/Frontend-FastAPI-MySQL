@@ -28,6 +28,7 @@ spec:
           values:
           - slave # Change this to the exact name of the node where the local path exists
 ---
+
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -35,10 +36,11 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: local-storage
+  volumeName: mysql-pv
   resources:
     requests:
       storage: 5Gi
+
 ---
 apiVersion: apps/v1
 kind: Deployment
