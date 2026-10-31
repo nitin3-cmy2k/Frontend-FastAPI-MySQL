@@ -76,7 +76,7 @@ pipeline {
                     sh "kubectl rollout status deployment/mysql-deployment --timeout=5m"
                     sh "kubectl rollout status deployment/backend --timeout=5m"
                     sh "kubectl rollout status deployment/frontend --timeout=5m"
-                    sh "kubectl get all -A
+                    sh "kubectl get all -A"
                 }
             }
         }
