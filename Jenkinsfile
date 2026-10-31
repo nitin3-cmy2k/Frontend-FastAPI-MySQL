@@ -6,6 +6,8 @@ pipeline {
         FRONTEND_IMAGE       = 'frontend'
         BACKEND_IMAGE        = 'backend'
         IMAGE_TAG            = "${BUILD_NUMBER}"
+        // Recommended: Add KUBECONFIG here if you switch to Jenkins Credentials Secret File
+        // KUBECONFIG       = credentials('my-k8s-kubeconfig-id')
     }
 
     stages {
@@ -65,6 +67,18 @@ pipeline {
                 }
             }
         }
+
+        stage('Post Deployment Verification') {
+            steps {
+                script {
+                    echo 'Verifying deployment states...'
+                    // Each rollout check has a 3-minute cap to prevent Jenkins from hanging indefinitely
+                    sh "kubectl rollout status deployment/mysql-deployment --timeout=3m"
+                    sh "kubectl rollout status deployment/backend --timeout=3m"
+                    sh "kubectl rollout status deployment/frontend --timeout=3m"
+                }
+            }
+        }
     }
 
     post {
@@ -73,6 +87,12 @@ pipeline {
             sh "docker rmi ${DOCKER_REGISTRY_USER}/${FRONTEND_IMAGE}:latest || true"
             sh "docker rmi ${DOCKER_REGISTRY_USER}/${BACKEND_IMAGE}:${IMAGE_TAG} || true"
             sh "docker rmi ${DOCKER_REGISTRY_USER}/${BACKEND_IMAGE}:latest || true"
+        }
+        failure {
+            echo 'Rollout failed. Fetching pod status and configurations for debugging...'
+            // Automatically prints basic errors to your Jenkins Console Output if deployment fails
+            sh "kubectl get deployments"
+            sh "kubectl get pods"
         }
     }
 }
